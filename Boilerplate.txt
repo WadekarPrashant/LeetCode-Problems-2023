@@ -1,0 +1,19 @@
+
+//C++ Boiler Plate
+
+#include<iostream>
+#include<bits/stdc++.h>
+using namespace std;
+
+int main()
+{
+   /* vector<string> name(vector<int>& arr) {
+        int n = arr.size();
+        }
+        */
+
+    return 0;
+} 
+
+
+// Python Boiler Plate
