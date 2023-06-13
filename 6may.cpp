@@ -1,29 +1,50 @@
+#include<iostream>
 #include<bits/stdc++.h>
+#include<vector>
+#include<list>
+#include<queue>
+#include<stack>
+#include<set>
+#include<map>
+#include<string.h>
+#include<math.h>
+#include<unordered_map>
+using namespace std;
 
-class Solution{
-public:
-    int maxCoins(int n,vector<vector<int>> &ranges){
-        // Code here
-        sort(ranges.begin(),ranges.end());
-        
-        vector<pair<int,int>> v(n);
-        int mx = 0;
-        for(int i= n-1;i>=0;i--)
-        {
-            mx = max(mx,ranges[i][2]);
-            v[i] = {ranges[i][0],mx};
-        }
-        int ans = 0;
-        for(int i=0;i<n;i++)
-        {
-            pair<int,int> p  = {ranges[i][1],0};
-             auto it = lower_bound(v.begin()+i+1,v.end(),p) - v.begin();
-           
-            if(it<n )
-            ans = max(ans, ranges[i][2]+v[it].second);
-            else
-            ans = max(ans,ranges[i][2]);
-        }
-        return ans;
-    }
+int main()
+{
+  /* vector<string> name(vector<int>& arr)
+  {
+  int n = arr.size();
+  } 	*/
+  class Solution {
+ public:
+  int numSubseq(vector<int>& nums, int target) {
+    constexpr int kMod = 1'000'000'007;
+    const int n = nums.size();
+    int ans = 0;
+    vector<int> pows(n, 1);  // pows[i] = 2^i % kMod
+
+    for (int i = 1; i < n; ++i)
+      pows[i] = pows[i - 1] * 2 % kMod;
+
+    sort(begin(nums), end(nums));
+
+    for (int l = 0, r = n - 1; l <= r;)
+      if (nums[l] + nums[r] <= target) {
+        ans += pows[r - l];
+        ans %= kMod;
+        ++l;
+      } else {
+        --r;
+      }
+
+    return ans;
+  }
 };
+
+  return 0;
+} 
+  
+
+  
